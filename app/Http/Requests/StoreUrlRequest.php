@@ -13,7 +13,7 @@ class StoreUrlRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class StoreUrlRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "url" => " required | url | max:191 ",
         ];
     }
 }

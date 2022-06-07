@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::post('/url_shorten', [App\Http\Controllers\UrlController::class, 'index'])->name('home');
-// Route::post('/send_messege', [App\Http\Controllers\Web\ContactController::class, 'send_messege'])->name('send_messege');
+Route::get('/', [App\Http\Controllers\UrlController::class, 'create'])->name('url_shoren.create');
+Route::post('/url_shorten', [App\Http\Controllers\UrlController::class, 'store'])->name('url_shoren.store');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Url;
 use App\Http\Requests\StoreUrlRequest;
 use App\Http\Requests\UpdateUrlRequest;
+use Illuminate\Support\Str;
 
 class UrlController extends Controller
 {
@@ -25,7 +26,7 @@ class UrlController extends Controller
      */
     public function create()
     {
-        //
+        return view("home");
     }
 
     /**
@@ -36,7 +37,19 @@ class UrlController extends Controller
      */
     public function store(StoreUrlRequest $request)
     {
-        //
+
+        $requestData = $request->all();
+        $requestData['url_shorten'] = env('APP_URL') .'/'. Str::random(5);
+
+        try {
+            $url = Url::create( $requestData );
+            return redirect() -> route("url_shoren.create")-> with( [ "success" => $url->url_shorten  ] ) ;
+            if(!$url)
+                return redirect() -> route("url_shoren.create")-> with( [ "failed" => "Error at added opration"] ) ;
+        } catch (\Exception $e) {
+            return redirect() -> route("url_shoren.create")-> with( [ "failed" => "Error at added opration"] ) ;
+        }
+
     }
 
     /**

@@ -18,7 +18,7 @@
             <!--------------- Session Alert ----------------->
             @if (session()->has('success'))
                 <div class="alert alert-success" role="alert">
-                    <a href="{{ session()->get('success') }}"> {{ session()->get('success') }} </a>
+                    <a href="{{ url('/'. session()->get('success') ) }}"> {{ url('/'. session()->get('success') ) }} </a>
                 </div>
             @elseif(session()->has('failed'))
                 <div class="alert alert-danger" role="alert">
